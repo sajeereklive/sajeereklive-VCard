@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D VCard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .perspective-1000 {
+      perspective: 1200px;
+    }
+    .rotate-y-6:hover {
+      transform: rotateY(6deg) scale(1.01);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 p-4 md:p-6">
+  <div class="max-w-3xl w-full">
+    <!-- Header -->
+    <div class="flex items-center justify-center mb-6 text-center px-2">
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold">SAJEER EDAKKANDAN</h1>
+    </div>
+
+    <!-- Card -->
+    <div class="relative group mx-auto w-full max-w-xl perspective-1000">
+      <div class="bg-white rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 border border-gray-200 relative overflow-hidden transition-transform duration-500 ease-out rotate-y-6">
+        
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <!-- Profile Image -->
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-lg bg-gradient-to-tr from-indigo-500 to-pink-500 flex-shrink-0 flex items-center justify-center text-white text-xl font-bold overflow-hidden">
+            <img src="img1.png" alt="Profile" class="w-full h-full object-cover rounded-lg">
+          </div>
+
+          <!-- Info -->
+          <div class="flex-1">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+              <div>
+                <h2 class="text-lg sm:text-xl font-semibold">Sajeer Edakkandan</h2>
+                <p class="text-xs sm:text-sm text-gray-500">Online Sales & Marketing Lead — Perfume Unlimited LLC</p>
+              </div>
+            </div>
+
+            <p class="mt-3 text-gray-600 text-sm leading-relaxed">
+              E-commerce & digital marketing lead specializing in perfumes and beauty.
+            </p>
+
+            <!-- Contact Links -->
+            <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+              <a href="tel:+971544693690" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50">📞 +971 54 469 3690</a>
+              <a href="mailto:marketplace@perfumeunlimited.com" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50">✉ marketplace@perfumeunlimited.com</a>
+              <a href="https://www.frenchfragrance.com" target="_blank" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50">🌐 frenchfragrance.com</a>
+              <a href="https://www.essenzi.com" target="_blank" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50">🌐 essenzi.com</a>
+              <a href="https://www.brandedperfume.com" target="_blank" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50">🌐 brandedperfume.com</a>
+              <a href="https://www.perfumeunlimited.com" target="_blank" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50">🌐 perfumeunlimited.com</a>
+              <a href="https://maps.app.goo.gl/CR1fuRwSKv48izxy9" target="_blank" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50">📍 DIP 2, Dubai, UAE</a>
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-6 flex flex-wrap gap-3">
+              <button onclick="shareVCard()" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition w-full sm:w-auto">Add Contact</button>
+              <button onclick="copyContact()" class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition w-full sm:w-auto">Copy</button>
+              <button onclick="downloadVCard()" class="px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 transition w-full sm:w-auto">Download .vcf</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decoration -->
+        <div class="absolute -right-8 -bottom-8 w-40 sm:w-48 h-40 sm:h-48 bg-gradient-to-tr from-pink-300 to-indigo-200 rounded-full opacity-40 blur-3xl pointer-events-none"></div>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="mt-6 text-xs text-gray-500 text-center px-2">
+      On mobile, pressing "Add Contact" will prompt to save the downloaded vCard into your phone contacts.
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script>
+    const contactData = {
+      fullName: "Sajeer Edakkandan",
+      title: "Online Sales & Marketing Lead",
+      company: "Perfume Unlimited LLC",
+      mobile: "+971544693690",
+      email: "marketplace@perfumeunlimited.com",
+      website: "https://www.frenchfragrance.com",
+      location: "DIP 2 , Dubai, UAE",
+      about: "E-commerce & digital marketing lead specializing in perfumes and beauty.",
+    };
+
+    function generateVCard() {
+      const d = contactData;
+      const lines = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        `FN:${d.fullName}`,
+        `TITLE:${d.title}`,
+        `ORG:${d.company}`,
+        `TEL;TYPE=CELL:${d.mobile}`,
+        `EMAIL;TYPE=INTERNET:${d.email}`,
+        `URL:${d.website}`,
+        `ADR;TYPE=WORK:;;${d.location};;;;`,
+        `NOTE:${d.about}`,
+        "END:VCARD",
+      ];
+      return lines.join("\r\n");
+    }
+
+    function downloadVCard() {
+      const vcf = generateVCard();
+      const blob = new Blob([vcf], { type: "text/vcard" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "contact.vcf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    async function shareVCard() {
+      const vcf = generateVCard();
+      const blob = new Blob([vcf], { type: "text/vcard" });
+      const file = new File([blob], "contact.vcf", { type: "text/vcard" });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({ files: [file], title: contactData.fullName, text: "My contact" });
+        } catch (err) {
+          downloadVCard();
+        }
+      } else {
+        downloadVCard();
+      }
+    }
+
+    function copyContact() {
+      const d = contactData;
+      const text = `${d.fullName}\n${d.title}\n${d.company}\nMobile: ${d.mobile}\nEmail: ${d.email}\nWebsite: ${d.website}\nLocation: ${d.location}`;
+      navigator.clipboard.writeText(text).then(() => alert("Contact copied to clipboard."));
+    }
+  </script>
+</body>
+</html>
