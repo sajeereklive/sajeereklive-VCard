@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>3D VCard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <style>
+    .perspective-1000 { perspective: 1200px; }
+    .rotate-y-6:hover { transform: rotateY(6deg) scale(1.01); }
+  </style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 p-4 md:p-6 transition-colors duration-500">
+  <div class="max-w-3xl w-full">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row items-center justify-between mb-6 px-2 text-center sm:text-left">
+      <h1 class="text-xl sm:text-2xl md:text-3xl font-semibold text-gray-900 dark:text-gray-100">Perfume Unlimited</h1>
+      <button id="themeToggle" class="mt-3 sm:mt-0 px-3 py-1 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-gray-200 text-sm hover:bg-gray-50 dark:hover:bg-gray-600 transition">
+        🌙 Toggle Dark Mode
+      </button>
+    </div>
+
+    <!-- Card -->
+    <div class="relative group mx-auto w-full max-w-xl perspective-1000">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 border border-gray-200 dark:border-gray-700 relative overflow-hidden transition-transform duration-500 ease-out rotate-y-6">
+        <div class="flex flex-col sm:flex-row items-start gap-4">
+          <!-- Profile Image -->
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-lg bg-gradient-to-tr from-indigo-500 to-pink-500 flex-shrink-0 flex items-center justify-center text-white text-xl font-bold overflow-hidden">
+            <img src="img1.png" alt="Profile" class="w-full h-full object-cover rounded-lg">
+          </div>
+
+          <!-- Info -->
+          <div class="flex-1">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between">
+              <div>
+                <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-gray-100">Sajeer Edakkandan</h2>
+                <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Online Sales & Marketing Lead — Perfume Unlimited LLC</p>
+              </div>
+            </div>
+
+            <p class="mt-3 text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+              E-commerce & digital marketing lead specializing in perfumes and beauty.
+            </p>
+
+            <!-- Contact Links -->
+            <div class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
+              <a href="tel:+971544693690" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">📞 +971 54 469 3690</a>
+              <a href="mailto:marketplace@perfumeunlimited.com" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">✉ marketplace@perfumeunlimited.com</a>
+              <a href="mailto:sajeer@perfumeunlimited.com" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">✉ sajeer@perfumeunlimited.com</a>
+              <a href="https://wa.me/971544693690" target="_blank" rel="noopener" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-green-50 dark:hover:bg-green-900 text-green-600 font-medium">💬 WhatsApp: +971 54 469 3690</a>
+              <a href="https://www.frenchfragrance.com" target="_blank" rel="noopener" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">🌐 frenchfragrance.com</a>
+              <a href="https://www.essenzi.com" target="_blank" rel="noopener" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">🌐 essenzi.com</a>
+              <a href="https://www.brandedperfume.com" target="_blank" rel="noopener" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">🌐 brandedperfume.com</a>
+              <a href="https://www.perfumeunlimited.com" target="_blank" rel="noopener" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">🌐 perfumeunlimited.com</a>
+              <a href="https://maps.app.goo.gl/CR1fuRwSKv48izxy9" target="_blank" rel="noopener" class="flex items-center gap-2 py-2 px-3 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200">📍 DIP 2, Dubai, UAE</a>
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-6 flex flex-wrap gap-3">
+              <button id="addContactBtn" onclick="shareVCard()" class="px-4 py-2 rounded-xl bg-indigo-600 text-white font-medium hover:bg-indigo-700 transition w-full sm:w-auto">Add Contact</button>
+              <button onclick="copyContact()" class="px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition w-full sm:w-auto">Copy</button>
+              <button onclick="downloadVCard()" class="px-4 py-2 rounded-xl border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600 transition w-full sm:w-auto">Download .vcf</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Decoration -->
+        <div class="absolute -right-8 -bottom-8 w-40 sm:w-48 h-40 sm:h-48 bg-gradient-to-tr from-pink-300 to-indigo-200 rounded-full opacity-40 blur-3xl pointer-events-none"></div>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="mt-6 text-xs text-gray-500 dark:text-gray-400 text-center px-2">
+      On mobile, pressing "Add Contact" will prompt to save the downloaded vCard into your phone contacts.
+    </div>
+  </div>
+
+  <script>
+    const contactData = {
+      fullName: "Perfume Unlimited Sajeer Edakkandan",
+      title: "Online Sales & Marketing Lead",
+      company: "Perfume Unlimited LLC",
+      mobile: "+971544693690",
+      email: "marketplace@perfumeunlimited.com",
+      email2: "sajeer@perfumeunlimited.com",
+      website: "https://www.frenchfragrance.com",
+      website2: "https://www.essenzi.com",
+      website3: "https://www.brandedperfume.com",
+      website4: "https://www.perfumeunlimited.com",
+      location: "DIP 2 , Dubai, UAE",
+      about: "E-commerce & digital marketing lead specializing in perfumes and beauty.",
+    };
+
+    // Resize & return base64 (JPEG/PNG) or null if fetch fails
+    async function getOptimizedBase64Image(url, maxSize = 300, outputType = "image/jpeg", quality = 0.8) {
+      try {
+        const response = await fetch(url, { cache: "no-store" });
+        if (!response.ok) throw new Error("Image not found");
+        const blob = await response.blob();
+        return await new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            const img = new Image();
+            img.onload = () => {
+              const canvas = document.createElement("canvas");
+              let width = img.width;
+              let height = img.height;
+              if (width > height) {
+                if (width > maxSize) { height *= maxSize / width; width = maxSize; }
+              } else {
+                if (height > maxSize) { width *= maxSize / height; height = maxSize; }
+              }
+              canvas.width = Math.round(width);
+              canvas.height = Math.round(height);
+              const ctx = canvas.getContext("2d");
+              ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+              try {
+                const dataUrl = canvas.toDataURL(outputType, quality);
+                const base64 = dataUrl.split(",")[1];
+                resolve(base64);
+              } catch (err) { reject(err); }
+            };
+            img.onerror = () => reject(new Error("Image load error"));
+            img.src = reader.result;
+          };
+          reader.onerror = (e) => reject(e);
+          reader.readAsDataURL(blob);
+        });
+      } catch (err) {
+        console.warn("Could not load image:", url, err);
+        return null; // graceful fallback
+      }
+    }
+
+    // Fold base64 into lines of 76 chars (vCard folding)
+    function foldBase64(b64, lineLength = 76) {
+      if (!b64) return "";
+      const regex = new RegExp(".{1," + lineLength + "}", "g");
+      const parts = b64.match(regex) || [];
+      // join with CRLF + single space for vCard folding
+      return parts.join("\r\n ");
+    }
+
+    // Build vCard (async because images may be processed)
+    async function generateVCard() {
+      const d = contactData;
+      // try to get images (may return null)
+      const photoBase64 = await getOptimizedBase64Image("img1.png", 300, "image/jpeg", 0.8);
+      const logoBase64 = await getOptimizedBase64Image("logo.png", 200, "image/png", 0.9);
+
+      const lines = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        `FN:Perfume Unlimited Sajeer Edakkandan`,
+        // N: FamilyName;GivenName;AdditionalNames;Prefixes;Suffixes
+        `N:Sajeer Edakkandan;Perfume Unlimited;;;`,
+        `ORG:${d.company}`,
+        `TITLE:${d.title}`,
+        `TEL;TYPE=CELL,VOICE:${d.mobile}`,
+        `TEL;TYPE=WHATSAPP:${d.mobile}`,
+        `EMAIL;TYPE=WORK:${d.email}`,
+        `EMAIL;TYPE=WORK:${d.email2}`,
+        `URL:${d.website}`,
+        `URL:${d.website2}`,
+        `URL:${d.website3}`,
+        `URL:${d.website4}`,
+        `ADR;TYPE=WORK:;;${d.location};;;;`,
+        `NOTE:${d.about}`,
+      ];
+
+      // Insert PHOTO if available (fold base64 into lines)
+      if (photoBase64) {
+        const folded = foldBase64(photoBase64);
+        // put header and data on same logical line with folding
+        lines.push(`PHOTO;ENCODING=BASE64;TYPE=JPEG:${folded}`);
+      } else {
+        console.info("No profile photo embedded (img1.png not available or fetch blocked).");
+      }
+
+      // Insert LOGO if available
+      if (logoBase64) {
+        const foldedLogo = foldBase64(logoBase64);
+        lines.push(`LOGO;ENCODING=BASE64;TYPE=PNG:${foldedLogo}`);
+      } else {
+        // optional, no action
+      }
+
+      lines.push(`X-SOCIALPROFILE;TYPE=whatsapp:https://wa.me/971544693690`);
+      lines.push("END:VCARD");
+
+      // join with CRLF (required for vCard)
+      return lines.join("\r\n");
+    }
+
+    // download .vcf file
+    async function downloadVCard() {
+      try {
+        const vcf = await generateVCard();
+        // create blob with utf-8 charset
+        const blob = new Blob([vcf], { type: "text/vcard;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "PerfumeUnlimited_SajeerEdakkandan.vcf";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        // revoke shortly after
+        setTimeout(() => URL.revokeObjectURL(url), 5000);
+      } catch (err) {
+        console.error("Failed to create/download vCard:", err);
+        alert("Sorry — couldn't create the vCard. Check console for details.");
+      }
+    }
+
+    // share using Web Share API (if available), otherwise fallback to download
+    async function shareVCard() {
+      try {
+        const vcf = await generateVCard();
+        const blob = new Blob([vcf], { type: "text/vcard;charset=utf-8" });
+        const file = new File([blob], "PerfumeUnlimited_SajeerEdakkandan.vcf", { type: "text/vcard" });
+
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          try {
+            await navigator.share({ files: [file], title: contactData.fullName, text: "My contact" });
+            return;
+          } catch (err) {
+            // share cancelled or failed — fallback to download
+            console.warn("navigator.share failed:", err);
+          }
+        }
+        // fallback
+        await downloadVCard();
+      } catch (err) {
+        console.error("Share/create vCard error:", err);
+        alert("Could not share vCard — falling back to download.");
+        await downloadVCard();
+      }
+    }
+
+    // copy textual contact to clipboard
+    function copyContact() {
+      const d = contactData;
+      const text = `${d.fullName}\n${d.title}\n${d.company}\nMobile: ${d.mobile}\nWhatsApp: ${d.mobile}\nEmails: ${d.email}, ${d.email2}\nWebsites: ${d.website}, ${d.website2}, ${d.website3}, ${d.website4}\nLocation: ${d.location}`;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => alert("Contact copied to clipboard."));
+      } else {
+        // fallback
+        prompt("Copy the contact details below:", text);
+      }
+    }
+
+    // theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+
+    // Helpful console tip for testing
+    console.info("If Add Contact or photo embedding fails, run a local server (not file://). Example: `python -m http.server` from this folder.");
+  </script>
+</body>
+</html>
